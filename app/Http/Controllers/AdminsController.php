@@ -7,9 +7,8 @@ use App\Models\Filme;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Auth\Events\Registered;
-use Illuminate\Validation\Rule;
 
-class FilmesController extends Controller
+class AdminsController extends Controller
 {
     public function index()
     {
