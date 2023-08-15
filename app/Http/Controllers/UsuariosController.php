@@ -6,7 +6,6 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Usuario;
-use App\Models\Aluno;
 
 class UsuariosController extends Controller
 {
@@ -28,6 +27,6 @@ class UsuariosController extends Controller
 
         event(new Registered($usuario));
 
-        return redirect()->route('')->with('success', 'Usuario cadastrado com sucesso')
+        return redirect()->route('')->with('success', 'Usuario cadastrado com sucesso');
     }
 }
