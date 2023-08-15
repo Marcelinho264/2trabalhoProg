@@ -7,18 +7,22 @@ use App\Models\Filme;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Validation\Rule;
 
 class FilmesController extends Controller
 {
-    public function index() {
+    public function index()
+    {
         return view('adm.index');
     }
 
-    public function add() {
+    public function add()
+    {
         return view('');
     }
 
-    public function addSave(Request $form) {
+    public function addSave(Request $form)
+    {
         $dados = $form->validate([
             'nome' => 'required',
             'email' => 'required|email',
@@ -32,45 +36,99 @@ class FilmesController extends Controller
 
         event(new Registered($usuario));
 
-        return redirect()->route('')->with('success', 'Usuario cadastrado com sucesso');
+        return redirect()->route('')->with('sucesso', 'Usuario cadastrado com sucesso');
     }
 
-    public function edit() {
+    public function edit()
+    {
         return view('adm.edit');
     }
 
-    public function editSave() {
+    public function editSave(Request $form, Usuario $usuario)
+    {
+
+        $dados = $form->validate([
+            'nome' => 'required',
+            'email' => 'required|email',
+        ]);
+
+        unset($dados['password']);
+
+        $usuario->fill($dados);
+        $usuario->save();
+
+        return redirect()->route('')->with('sucesso', 'Usuário alterado com sucesso');
     }
 
-    public function delete() {
+    public function delete(Usuario $usuario)
+    {
+        return view('',[
+            'user' => $usuario
+        ]);
     }
 
-    public function deleteTrue() {
+    public function deleteForReal(Usuario $usuario)
+    {
+        $usuario -> delete();
+
+        return redirect()->route('')->with('sucesso', 'Usuario excluido com sucesso');
     }
 
-    public function addFilme() {
+    public function addFilme()
+    {
         return view('');
     }
 
-    public function addFilmeSave(Request $form) {
+    public function addFilmeSave(Request $form)
+    {
         $dados = $form->validate([
-
+            'nome' => 'required',
+            'sinopse' => 'required',
+            'ano' => 'required',
+            'categoria' => 'required',
+            'imagem_capa' => 'required',
+            'link_trailer' => 'required',
         ]);
 
         $filme = Filme::created($dados);
+
+        event(new Registered($filme));
+
+        return redirect()->route('')->with('sucesso', 'Filme cadastrado com sucesso');
     }
 
-    public function editFilme() {
+    public function editFilme()
+    {
         return view('adm.editFilme');
     }
 
-    public function editSaveFilme() {
+    public function editFilmeSave(Request $form, Filme $filme)
+    {
+        $dados = $form->validate([
+            'nome' => 'required',
+            'sinopse' => 'required',
+            'ano' => 'required',
+            'categoria' => 'required',
+            'imagem_capa' => 'required',
+            'link_trailer' => 'required',
+        ]);
+        $filme->fill($dados);
+        $filme->save();
+
+        return redirect()->route('')->with('sucesso', 'Filme alterado com sucesso');
     }
 
-    public function deleteFilme() {
-        return view('adm.deleteFilme');
+    public function deleteFilme(Filme $filme)
+    {
+        return view('adm.deleteFilme', [
+            'filme' => $filme
+        ]);
     }
 
-    public function deleteTrueFilme() {
+    public function deleteFilmeForReal(Filme $filme)
+    {
+        $filme->delete();
+
+        return redirect()->route('')->with('success', 'Filme excluido com sucesso');
     }
 }
