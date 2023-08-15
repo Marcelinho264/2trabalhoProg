@@ -7,7 +7,7 @@
     <title>Document</title>
 </head>
 <body>
-    <a href="{{ url->current() }}">
+    <a href="{{ url()->current() }}">
         <button>Entrar</button>
     </a>
 

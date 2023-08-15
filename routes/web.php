@@ -40,6 +40,4 @@ Route::prefix('/adm')->middleware('auth')->group(function () {
     Route::get('/delete/{filme}', [ProdutosController::class, 'delete'])->name('adm.delete');
 
     Route::delete('/delete/{filme}', [ProdutosController::class, 'deleteForReal'])->name('adm.deleteForReal');
-
-
 });
