@@ -8,9 +8,6 @@
 </head>
 <body>
     <form action="">
-        <label>Nome de usuário</label>
-        <input type="text">
-        <br>
         <label>E-mail</label>
         <input type="email">
         <br>
