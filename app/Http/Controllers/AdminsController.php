@@ -10,14 +10,29 @@ use Illuminate\Auth\Events\Registered;
 
 class AdminsController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return view('adm.index');
+        if ($request->isMethod('POST')) {
+            $busca = $request->busca;
+
+            $ord = $request->ord == 'asc';
+
+            $filmes = Filme::where('nome', 'LIKE', "%{%busca}%")
+                ->orderBy('name', $ord)
+                ->paginate();
+        } else {
+
+            $filmes = Filme::paginate();
+        }
+
+        return view('adm.index', [
+            'filmes' => $filmes,
+        ]);
     }
 
     public function add()
     {
-        return view('');
+        return view('adm.add');
     }
 
     public function addSave(Request $form)
@@ -35,7 +50,7 @@ class AdminsController extends Controller
 
         event(new Registered($usuario));
 
-        return redirect()->route('')->with('sucesso', 'Usuario cadastrado com sucesso');
+        return redirect()->route('adm.index')->with('sucesso', 'Usuario cadastrado com sucesso');
     }
 
     public function edit()
@@ -128,6 +143,6 @@ class AdminsController extends Controller
     {
         $filme->delete();
 
-        return redirect()->route('')->with('success', 'Filme excluido com sucesso');
+        return redirect()->route('adm.index')->with('success', 'Filme excluido com sucesso');
     }
 }

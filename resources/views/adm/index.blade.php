@@ -7,19 +7,22 @@
     <title>Document</title>
 </head>
 <body>
-    <table>
+    <table border="1">
         <tr>
             <th>Título</th>
             <th>Ano</th>
             <th>Categoria</th>
             <th>Opções</th>
         </tr>
+
+        @foreach ($filmes as $filme)
         <tr>
-            <td>{{ $filme -> }}</td>
-            <td>{{ $filme -> }}</td>
-            <td>{{ $filme -> }}</td>
-            <td><a href="{{ route('adm.delete', $filme->id) }}">Apagar</a></td>
+            <td>{{ $filme->nome}}</td>
+            <td>{{ $filme->ano }}</td>
+            <td>{{ $filme->categoria }}</td>
+            <td><a href="{{ route('adm.deleteFilme', $filme->id) }}">Apagar</a></td>
         </tr>
+        @endforeach
     </table>
 </body>
 </html>
