@@ -6,7 +6,7 @@
     @endforeach
 @endif
 
-<form action="{{ route('adm.addSave') }}" method="post">
+<form action="{{ route('adm.addUsuarioSave') }}" method="post">
     @csrf
     <input type="text" name="nome" placeholder="Nome do usuário">
     <br>

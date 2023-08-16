@@ -16,8 +16,6 @@
     <br>
     <input type="text" name="sinopse" placeholder="Sinopse do filme">
     <br>
-    <input type="text" name="genero" placeholder="Genêro do filme">
-    <br>
     <input type="text" name="link_trailer" placeholder="Link do trailer">
     <br>
     <input type="text" name="imagem_capa" placeholder="Capa do filme">

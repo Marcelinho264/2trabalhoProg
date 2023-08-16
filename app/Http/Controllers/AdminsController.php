@@ -10,7 +10,7 @@ use Illuminate\Auth\Events\Registered;
 
 class AdminsController extends Controller
 {
-    public function index(Request $request)
+    public function indexFilme(Request $request)
     {
         if ($request->isMethod('POST')) {
             $busca = $request->busca;
@@ -25,17 +25,17 @@ class AdminsController extends Controller
             $filmes = Filme::paginate();
         }
 
-        return view('adm.index', [
+        return view('adm.indexFilme', [
             'filmes' => $filmes,
         ]);
     }
 
-    public function add()
+    public function addUsuario()
     {
-        return view('adm.add');
+        return view('adm.addUsuario');
     }
 
-    public function addSave(Request $form)
+    public function addUsuarioSave(Request $form)
     {
         $dados = $form->validate([
             'nome' => 'required',
@@ -50,42 +50,40 @@ class AdminsController extends Controller
 
         event(new Registered($usuario));
 
-        return redirect()->route('adm.index')->with('sucesso', 'Usuario cadastrado com sucesso');
+        return redirect()->route('adm.indexUsuario')->with('sucesso', 'Usuario cadastrado com sucesso');
     }
 
-    public function edit()
+    public function editUsuario(Usuario $usuario)
     {
-        return view('adm.edit');
+        return view('adm.editUsuario', compact('usuario'));
     }
 
-    public function editSave(Request $form, Usuario $usuario)
+    public function editUsuarioSave(Request $request, Usuario $usuario)
     {
-
-        $dados = $form->validate([
+        $dados = $request->validate([
             'nome' => 'required',
             'email' => 'required|email',
         ]);
 
-        unset($dados['password']);
-
         $usuario->fill($dados);
+
         $usuario->save();
 
-        return redirect()->route('')->with('sucesso', 'Usuário alterado com sucesso');
+        return redirect()->route('adm.addFilme')->with('sucesso', 'Usuário alterado com sucesso');
     }
 
-    public function delete(Usuario $usuario)
+    public function deleteUsuario(Usuario $usuario)
     {
-        return view('',[
+        return view('', [
             'user' => $usuario
         ]);
     }
 
-    public function deleteForReal(Usuario $usuario)
+    public function deleteUsuarioForReal(Usuario $usuario)
     {
-        $usuario -> delete();
+        $usuario->delete();
 
-        return redirect()->route('')->with('sucesso', 'Usuario excluido com sucesso');
+        return redirect()->route('deleteUsuario')->with('sucesso', 'Usuario excluido com sucesso');
     }
 
     public function addFilme()
@@ -111,9 +109,9 @@ class AdminsController extends Controller
         return redirect()->route('adm.addFilme')->with('sucesso', 'Filme cadastrado com sucesso');
     }
 
-    public function editFilme()
+    public function editFilme(Filme $filme)
     {
-        return view('adm.editFilme');
+        return view('adm.editFilme', compact('filme'));
     }
 
     public function editFilmeSave(Request $form, Filme $filme)
@@ -126,10 +124,12 @@ class AdminsController extends Controller
             'imagem_capa' => 'required',
             'link_trailer' => 'required',
         ]);
+
         $filme->fill($dados);
+
         $filme->save();
 
-        return redirect()->route('')->with('sucesso', 'Filme alterado com sucesso');
+        return redirect()->route('adm.indexFilme')->with('sucesso', 'Filme alterado com sucesso');
     }
 
     public function deleteFilme(Filme $filme)
@@ -143,6 +143,6 @@ class AdminsController extends Controller
     {
         $filme->delete();
 
-        return redirect()->route('adm.index')->with('success', 'Filme excluido com sucesso');
+        return redirect()->route('adm.indexFilme')->with('success', 'Filme excluido com sucesso');
     }
 }

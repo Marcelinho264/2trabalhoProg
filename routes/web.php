@@ -21,31 +21,37 @@ Route::get('/', function () {
 });
 
 Route::prefix('/usuario')->middleware('auth', 'usuario')->group(function () {
-    Route::get('index', [UsuariosController::class, 'index'])->name('usuarios.index');
+    Route::get('/', [UsuariosController::class, 'indexUsuario'])->name('usuarios.index');
 
-    Route::get('view', [UsuariosController::class, 'view'])->name('usuario.view');
+    Route::get('view', [UsuariosController::class, 'viewUsuario'])->name('usuario.view');
 });
 
 Route::prefix('/adm')->middleware('auth', 'admin')->group(function () {
     Route::get('/', [AdminsController::class, 'index'])->name('adm.index');
 
-    Route::get('/add', [AdminsController::class, 'add'])->name('adm.add');
+    Route::get('add/usuario', [AdminsController::class, 'addUsuario'])->name('adm.addUsuario');
 
-    Route::post('/add', [AdminsController::class, 'addSave'])->name('adm.addSave');
+    Route::post('add/usuario', [AdminsController::class, 'addUsuarioSave'])->name('adm.addUsuarioSave');
 
-    Route::get('/addFilme', [AdminsController::class, 'addFilme'])->name('adm.addFilme');
+    Route::get('add/filme', [AdminsController::class, 'addFilme'])->name('adm.addFilme');
 
-    Route::post('/addFilme', [AdminsController::class, 'addFilmeSave'])->name('adm.addFilmeSave');
+    Route::post('add/filme/', [AdminsController::class, 'addFilmeSave'])->name('adm.addFilmeSave');
 
-    // Route::get('/{filme}', [AdminsController::class, 'view'])->name('adm.view');
+    Route::get('edit/filme/{filme}', [AdminsController::class, 'editFilme'])->name('adm.editFilme');
 
-    Route::get('/edit/{filme}', [AdminsController::class, 'edit'])->name('adm.edit');
+    Route::post('edit/filme/{filme}', [AdminsController::class, 'editFilmeSave'])->name('adm.editFilmeSave');
 
-    Route::post('/edit/{filme}', [AdminsController::class, 'editSave'])->name('adm.editSave');
+    Route::get('edit/usuario/{usuario}', [AdminsController::class, 'editUsuario'])->name('adm.editUsuario');
 
-    Route::get('/delete/{filme}', [AdminsController::class, 'deleteFilme'])->name('adm.deleteFilme');
+    Route::post('edit/usuario/{usuario}', [AdminsController::class, 'editUsuarioSave'])->name('adm.editUsuarioSave');
 
-    Route::delete('/delete/{filme}', [AdminsController::class, 'deleteFilmeForReal'])->name('adm.deleteFilmeForReal');
+    Route::get('delete/filme/{filme}', [AdminsController::class, 'deleteFilme'])->name('adm.deleteFilme');
+
+    Route::delete('delete/filme/{filme}', [AdminsController::class, 'deleteFilmeForReal'])->name('adm.deleteFilmeForReal');
+
+    Route::get('delete/usuario/{usuario}', [AdminsController::class, 'deleteUsuario'])->name('adm.deleteUsuario');
+
+    Route::delete('delete/usuario/{usuario}', [AdminsController::class, 'deleteUsuarioForReal'])->name('adm.deleteUsuarioForReal');
 });
 
 Route::get('login', [LoginsController::class, 'showLoginForm'])->name('showLoginForm');

@@ -7,11 +7,11 @@ use Illuminate\Http\Request;
 
 class UsuariosController extends Controller
 {
-    public function view() {
+    public function viewUsuario() {
         return view('usuario.view');
     }
 
-    public function index() {
+    public function indexUsuario() {
         return view('usuario.index');
     }
 }
