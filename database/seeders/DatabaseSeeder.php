@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use Database\Seeders\UsuariosSeeder;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Database\Seeders\FilmesSeeder;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             UsuariosSeeder::class,
+            FilmesSeeder::class,
         ]);
     }
 }
