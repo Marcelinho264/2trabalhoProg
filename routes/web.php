@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminsController;
+use App\Http\Controllers\LoginsController;
+use App\Http\Controllers\UsuariosController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,12 +21,12 @@ Route::get('/', function () {
 });
 
 Route::prefix('/usuario')->middleware('auth')->group(function () {
-    Route::get('', [UsuariosController::class, 'index'])->name('usuarios');
+    Route::get('index', [UsuariosController::class, 'index'])->name('usuarios.index');
 
-    Route::get('view', [UsuariosController::class, 'view'])->name('usuarios.view');
+    Route::get('view', [UsuariosController::class, 'view'])->name('usuario.view');
 });
 
-Route::prefix('/adm')->group(function () {
+Route::prefix('/adm')->middleware('auth')->group(function () {
     Route::post('/', [AdminsController::class, 'index']);
 
     Route::get('/add', [AdminsController::class, 'addFilme'])->name('adm.addFilme');
@@ -41,3 +43,6 @@ Route::prefix('/adm')->group(function () {
 
     Route::delete('/delete/{filme}', [AdminsController::class, 'deleteForReal'])->name('adm.deleteForReal');
 });
+
+Route::get('login', [LoginsController::class, 'showLoginForm'])->name('showLoginForm');
+Route::post('login', [LoginsController::class, 'login'])->name('login');

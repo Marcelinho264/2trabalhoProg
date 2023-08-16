@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -9,23 +8,29 @@ class LoginsController extends Controller
 {
     public function showLoginForm()
     {
-        return view('');
+        return view('formUser');
     }
 
     public function login(Request $request)
     {
-        $credentials = $request->only('email', 'senha');
+        $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
 
-            if ($user->permissoes === 0) {
-                return redirect()->intended(route(''));
+            if ($user->permissao === 0) {
+                return redirect()->route('adm.addFilme');
             } else {
-                return redirect()->intended(route(''));
+                return redirect()->route('usuario.view');
             }
         }
 
         return redirect()->back()->withErrors(['login' => 'Credenciais inválidas']);
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect()->route('login');
     }
 }

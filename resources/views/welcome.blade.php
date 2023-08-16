@@ -8,7 +8,7 @@
 </head>
 <body>
     <a href="{{ url()->current() }}">
-        <li> <a href="{{ route('adm.addFilme') }}">Entrar</a></li>
+        <li> <a href="{{ route('showLoginForm') }}">Entrar</a></li>
     </a>
 
 </body>
