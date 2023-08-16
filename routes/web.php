@@ -20,13 +20,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::prefix('/usuario')->middleware('auth')->group(function () {
+Route::prefix('/usuario')->middleware('auth', 'usuario')->group(function () {
     Route::get('index', [UsuariosController::class, 'index'])->name('usuarios.index');
 
     Route::get('view', [UsuariosController::class, 'view'])->name('usuario.view');
 });
 
-Route::prefix('/adm')->middleware('auth')->group(function () {
+Route::prefix('/adm')->middleware('auth', 'admin')->group(function () {
     Route::post('/', [AdminsController::class, 'index']);
 
     Route::get('/add', [AdminsController::class, 'addFilme'])->name('adm.addFilme');
