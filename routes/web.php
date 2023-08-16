@@ -27,7 +27,7 @@ Route::prefix('/usuario')->middleware('auth', 'usuario')->group(function () {
 });
 
 Route::prefix('/adm')->middleware('auth', 'admin')->group(function () {
-    Route::get('/', [AdminsController::class, 'index'])->name('adm.index');
+    Route::get('/', [AdminsController::class, 'indexFilme'])->name('adm.indexFilme');
 
     Route::get('add/usuario', [AdminsController::class, 'addUsuario'])->name('adm.addUsuario');
 

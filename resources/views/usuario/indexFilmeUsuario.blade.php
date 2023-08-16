@@ -10,13 +10,15 @@
     <table>
         <tr>
             <th>Título</th>
+            <th>Sinopse</th>
             <th>Ano</th>
             <th>Categoria</th>
         </tr>
         <tr>
-            <td>{{ $filme -> }}</td>
-            <td>{{ $filme -> }}</td>
-            <td>{{ $filme -> }}</td>
+            <td>{{ $filme ->nome }}</td>
+            <td>{{ $filme ->sinopse }}</td>
+            <td>{{ $filme ->ano }}</td>
+            <td>{{ $filme ->categoria }}</td>
         </tr>
     </table>
 </body>
