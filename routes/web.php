@@ -27,11 +27,11 @@ Route::prefix('/usuario')->middleware('auth')->group(function () {
 Route::prefix('/adm')->group(function () {
     Route::post('/', [AdminsController::class, 'index']);
 
-    Route::get('/add', [AdminsController::class, 'add'])->name('adm.add');
+    Route::get('/add', [AdminsController::class, 'addFilme'])->name('adm.addFilme');
 
-    Route::post('/add', [AdminsController::class, 'addSave'])->name('adm.addSave');
+    Route::post('/add', [AdminsController::class, 'addFilmeSave'])->name('adm.addFilmeSave');
 
-    Route::get('/{filme}', [AdminsController::class, 'view'])->name('adm.view');
+    // Route::get('/{filme}', [AdminsController::class, 'view'])->name('adm.view');
 
     Route::get('/edit/{filme}', [AdminsController::class, 'edit'])->name('adm.edit');
 

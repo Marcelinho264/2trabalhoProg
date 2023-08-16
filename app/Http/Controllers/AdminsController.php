@@ -75,7 +75,7 @@ class AdminsController extends Controller
 
     public function addFilme()
     {
-        return view('');
+        return view('adm.addFilme');
     }
 
     public function addFilmeSave(Request $form)
@@ -89,11 +89,11 @@ class AdminsController extends Controller
             'link_trailer' => 'required',
         ]);
 
-        $filme = Filme::created($dados);
+        $filme = Filme::create($dados);
 
         event(new Registered($filme));
 
-        return redirect()->route('')->with('sucesso', 'Filme cadastrado com sucesso');
+        return redirect()->route('adm.addFilme')->with('sucesso', 'Filme cadastrado com sucesso');
     }
 
     public function editFilme()
