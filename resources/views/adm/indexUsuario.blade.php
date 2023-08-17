@@ -25,4 +25,6 @@
         </tr>
         @endforeach
     </table>
+
+    <a href="{{ route('adm.indexFilme' )}}"><button>Voltar</button></a>
 @endsection

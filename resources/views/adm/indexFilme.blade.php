@@ -23,4 +23,7 @@
     </table>
 
     <a href="{{ route('adm.addFilme' )}}"><button>Adicionar Filme</button></a>
+    <a href="{{ route('adm.addUsuario')}}"><button>Adicionar novo Usuário</button></a>
+    <a href="{{ route('adm.indexUsuario')}}"><button>Visualizar Usuários</button></a>
+
 @endsection
