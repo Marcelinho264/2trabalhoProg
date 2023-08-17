@@ -10,6 +10,13 @@ use Illuminate\Auth\Events\Registered;
 
 class AdminsController extends Controller
 {
+    public function indexUsuario(Usuario $usuarios)
+    {
+        $usuarios = Usuario::all();
+
+        return view('adm.indexUsuario', ['usuarios' => $usuarios]);
+    }
+
     public function indexFilme(Request $request)
     {
         if ($request->isMethod('POST')) {
@@ -74,8 +81,8 @@ class AdminsController extends Controller
 
     public function deleteUsuario(Usuario $usuario)
     {
-        return view('', [
-            'user' => $usuario
+        return view('adm.indexUsuario', [
+            'usuario' => $usuario
         ]);
     }
 

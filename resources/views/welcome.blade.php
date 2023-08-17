@@ -6,10 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
+
 <body>
     <a href="{{ url()->current() }}">
         <li> <a href="{{ route('showLoginForm') }}">Entrar</a></li>
     </a>
-
 </body>
+
 </html>
