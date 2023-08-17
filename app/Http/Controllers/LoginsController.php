@@ -19,9 +19,9 @@ class LoginsController extends Controller
             $user = Auth::user();
 
             if ($user->permissao === 0) {
-                return redirect()->route('adm.addFilme');
+                return redirect()->route('adm.indexFilme');
             } else {
-                return redirect()->route('usuario.view');
+                return redirect()->route('usuario.indexFilme');
             }
         }
 

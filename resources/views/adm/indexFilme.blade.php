@@ -1,28 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
+@extends('includes.base')
+
+@section('content')
+
 <body>
-    <table border="1">
+    <table style="margin-top: 2vw;" class="table">
         <tr>
-            <th>Título</th>
-            <th>Ano</th>
-            <th>Categoria</th>
-            <th>Opções</th>
+            <th scope="col">Título</th>
+            <th scope="col">Ano</th>
+            <th scope="col">Categoria</th>
+            <th scope="col">Opções</th>
         </tr>
 
         @foreach ($filmes as $filme)
         <tr>
-            <td>{{ $filme->nome}}</td>
+            <td scope="row">{{ $filme->nome}}</td>
             <td>{{ $filme->ano }}</td>
             <td>{{ $filme->categoria }}</td>
             <td><a href="{{ route('adm.deleteFilme', $filme->id) }}">Apagar</a></td>
         </tr>
         @endforeach
     </table>
-</body>
-</html>
+
+    <a href="{{ route('adm.addFilme' )}}"><button>Adicionar Filme</button></a>
+@endsection

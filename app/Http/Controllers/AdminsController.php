@@ -70,13 +70,14 @@ class AdminsController extends Controller
         $dados = $request->validate([
             'nome' => 'required',
             'email' => 'required|email',
+            'permissao' => 'required',
         ]);
 
         $usuario->fill($dados);
 
         $usuario->save();
 
-        return redirect()->route('adm.addFilme')->with('sucesso', 'Usuário alterado com sucesso');
+        return redirect()->route('adm.indexUsuario')->with('sucesso', 'Usuário alterado com sucesso');
     }
 
     public function deleteUsuario(Usuario $usuario)

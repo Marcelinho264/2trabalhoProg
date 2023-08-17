@@ -1,3 +1,5 @@
+@extends('includes.form')
+
 <h2>Adicione um usuário</h2>
 
 @if ($errors)
@@ -6,6 +8,7 @@
     @endforeach
 @endif
 
+@section('content')
 <form action="{{ route('adm.addUsuarioSave') }}" method="post">
     @csrf
     <input type="text" name="nome" placeholder="Nome do usuário">
@@ -21,3 +24,4 @@
     <br>
     <input type="submit" value="Gravar">
 </form>
+@endsection
