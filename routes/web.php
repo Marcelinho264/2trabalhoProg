@@ -21,15 +21,15 @@ Route::get('/', function () {
 });
 
 Route::prefix('/usuario')->middleware('auth', 'usuario')->group(function () {
-    Route::get('/', [UsuariosController::class, 'indexUsuario'])->name('usuarios.index');
+    Route::get('filmes', [UsuariosController::class, 'indexFilmeUsuario'])->name('usuarios.indexFilmeUsuario');
 
-    Route::get('view', [UsuariosController::class, 'viewUsuario'])->name('usuario.view');
+    Route::get('filmes/{filme}', [UsuariosController::class, 'viewFilmeUsuario'])->name('usuario.viewFilmeUsuario');
 });
 
 Route::prefix('/adm')->middleware('auth', 'admin')->group(function () {
-    Route::get('/filmes', [AdminsController::class, 'indexFilme'])->name('adm.indexFilme');
+    Route::get('filmes', [AdminsController::class, 'indexFilme'])->name('adm.indexFilme');
 
-    Route::get('/usuarios', [AdminsController::class, 'indexUsuario'])->name('adm.indexUsuario');
+    Route::get('usuarios', [AdminsController::class, 'indexUsuario'])->name('adm.indexUsuario');
 
     Route::get('add/usuario', [AdminsController::class, 'addUsuario'])->name('adm.addUsuario');
 

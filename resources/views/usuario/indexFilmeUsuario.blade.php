@@ -1,25 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    <table>
-        <tr>
-            <th>Título</th>
-            <th>Sinopse</th>
-            <th>Ano</th>
-            <th>Categoria</th>
-        </tr>
-        <tr>
-            <td>{{ $filme ->nome }}</td>
-            <td>{{ $filme ->sinopse }}</td>
-            <td>{{ $filme ->ano }}</td>
-            <td>{{ $filme ->categoria }}</td>
-        </tr>
-    </table>
-</body>
-</html>
+@extends('includes.base')
+
+@section('content')
+    <div style="margin-top: 2vw;">
+        <h1 style="font-size: 24px;">Lista de Filmes</h1>
+
+        @foreach ($filmes as $filme)
+            <div class="card" style="width: 18rem; display: inline-block; margin: 10px;">
+                <img class="card-img-top" src="{{ $filme->imagem_capa }}" alt="Capa do Filme">
+                <div class="card-body">
+                    <h5 class="card-title" style="font-size: 18px;">{{ $filme->nome }}</h5>
+                    <p class="card-text">{{ $filme->sinopse }}</p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item" style="font-size: 14px;">Ano de lançamento: {{ date('d/m/Y', strtotime($filme->ano)) }}</li>
+                    <li class="list-group-item" style="font-size: 14px;">Categoria: {{ $filme->categoria }}</li>
+                </ul>
+                <div class="card-body">
+                    <a href="{{ route('usuario.viewFilmeUsuario', $filme->id) }}" class="card-link" style="font-size: 14px;">Ver detalhes</a>
+                </div>
+            </div>
+        @endforeach
+    </div>
+@endsection

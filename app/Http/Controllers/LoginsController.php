@@ -21,7 +21,7 @@ class LoginsController extends Controller
             if ($user->permissao === 0) {
                 return redirect()->route('adm.indexFilme');
             } else {
-                return redirect()->route('usuario.indexFilme');
+                return redirect()->route('usuarios.indexFilmeUsuario');
             }
         }
 
