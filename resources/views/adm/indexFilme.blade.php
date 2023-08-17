@@ -16,7 +16,8 @@
             <td scope="row">{{ $filme->nome}}</td>
             <td>{{ $filme->ano }}</td>
             <td>{{ $filme->categoria }}</td>
-            <td><a href="{{ route('adm.deleteFilme', $filme->id) }}">Apagar</a></td>
+            <td><a href="{{ route('adm.deleteFilme', $filme->id) }}">Apagar</a>
+                <a href="{{ route('adm.editFilme', $filme->id) }}">Editar</a></td>
         </tr>
         @endforeach
     </table>

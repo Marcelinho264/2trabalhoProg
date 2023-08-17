@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <link rel="stylesheet" href="../style/style.css">
-    <link rel="stylesheet" href="../../style/add.css">
-    <link rel="stylesheet" href="../../../style/edit.css">
+    <link rel="stylesheet" href="../../../style/add.css">
 
     <title>Programação</title>
 </head>
