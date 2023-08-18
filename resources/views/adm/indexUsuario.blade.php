@@ -8,13 +8,20 @@
     <title>Document</title>
 </head>
 
-<body>
-    <table border="1">
-        <tr>
-            <th>Nome</th>
-            <th>Email</th>
-            <th>Nível de Acesso</th>
-            <th>Opções</th>
+    @foreach ($usuarios as $usuario)
+    <tr>
+        <td scope="row">{{ $usuario->nome }}</td>
+        <td>{{ $usuario->email }}</td>
+        <td>
+            @if ($usuario->permissao == 1)
+            Usuário
+            @else
+            Administrador
+            @endif
+        </td>
+        <td>
+            <a class="btn btn-danger"  href="{{ route('adm.deleteUsuario', $usuario->id) }}">Apagar</a> |
+            <a class="btn btn-danger" href="{{ route('adm.editUsuario', $usuario->id) }}">Editar</a></td>
         </tr>
 
         @foreach ($usuarios as $usuario)
