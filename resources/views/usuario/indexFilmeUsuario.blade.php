@@ -1,4 +1,4 @@
-@extends('includes.base')
+@extends('includes.usuario')
 
 @section('content')
     <div style="margin-top: 2vw;">

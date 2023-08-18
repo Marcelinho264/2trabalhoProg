@@ -1,4 +1,4 @@
-@extends('includes.base')
+@extends('includes.usuario')
 
 @section('content')
     <div class="d-flex justify-content-center align-items-center" style="min-height: 80vh;">
@@ -31,4 +31,5 @@
 
         </div>
     </div>
+    <a href="{{ route('usuarios.indexFilmeUsuario') }}" class="btn btn-danger">Voltar</a>
 @endsection
