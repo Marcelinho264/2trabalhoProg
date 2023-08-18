@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 class UsuariosController extends Controller
 {
+
     public function viewFilmeUsuario($id) {
         $filme = Filme::find($id);
 

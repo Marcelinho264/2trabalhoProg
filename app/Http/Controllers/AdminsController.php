@@ -39,7 +39,7 @@ class AdminsController extends Controller
 
     public function addUsuario()
     {
-        return view('adm.addUsuario');
+        return view('usuario.addUsuario');
     }
 
     public function addUsuarioSave(Request $form)
@@ -57,7 +57,7 @@ class AdminsController extends Controller
 
         event(new Registered($usuario));
 
-        return redirect()->route('adm.indexUsuario')->with('sucesso', 'Usuario cadastrado com sucesso');
+        return redirect()->route('userForm')->with('sucesso', 'Usuario cadastrado com sucesso');
     }
 
     public function editUsuario(Usuario $usuario)
