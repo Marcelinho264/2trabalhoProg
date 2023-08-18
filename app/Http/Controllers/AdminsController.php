@@ -84,7 +84,7 @@ class AdminsController extends Controller
 
     public function deleteUsuario(Usuario $usuario)
     {
-        return view('adm.indexUsuario', [
+        return view('adm.deleteUsuario', [
             'usuario' => $usuario
         ]);
     }
@@ -93,7 +93,7 @@ class AdminsController extends Controller
     {
         $usuario->delete();
 
-        return redirect()->route('deleteUsuario')->with('sucesso', 'Usuario excluido com sucesso');
+        return redirect()->route('adm.indexUsuario')->with('sucesso', 'Usuario excluido com sucesso');
     }
 
     public function addFilme()

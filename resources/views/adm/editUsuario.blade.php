@@ -17,12 +17,12 @@
                     <h2>Atualizar usuario</h2>
                     <div class="inputbox">
                         <ion-icon name="person-outline"></ion-icon>
-                        <input type="text" name="nome" required>
+                        <input type="text" value="{{ old('nome', $usuario->nome ) }}" name="nome" required>
                         <label for="">Nome</label>
                     </div>
                     <div class="inputbox">
                         <ion-icon name="person-outline"></ion-icon>
-                        <input type="text" name="link_trailer" required>
+                        <input type="text" value="{{ old('email', $usuario->email) }}" name="email" required>
                         <label for="">Email</label>
                     </div>
                     <div>
