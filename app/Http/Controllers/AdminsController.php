@@ -21,30 +21,11 @@ class AdminsController extends Controller
         ]);
     }
 
-    public function filtrarFilmes(Request $request)
+    public function indexFilme(Filme $filmes)
     {
-        $categorias = DB::table('filmes')->distinct('categoria')->pluck('categoria');
+        $filmes = Filme::all();
 
-        $query = Filme::query();
-
-        if ($request->has('categoria')) {
-            $query->where('categoria', $request->categoria);
-        }
-
-        if ($request->has('ano')) {
-            $query->where('ano', $request->ano);
-        }
-
-        if ($request->has('nome')) {
-            $query->where('nome', 'LIKE', '%' . $request->nome . '%');
-        }
-
-        $filmes = $query->paginate();
-
-        return view('sua.view.aqui', [
-            'filmes' => $filmes,
-            'categorias' => $categorias,
-        ]);
+        return view('adm.indexFilme', ['filmes' => $filmes]);
     }
 
 
