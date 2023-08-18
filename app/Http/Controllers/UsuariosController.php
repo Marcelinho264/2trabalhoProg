@@ -21,14 +21,12 @@ class UsuariosController extends Controller
     public function indexFilmeUsuario(Request $request) {
         if ($request->isMethod('POST')) {
             $busca = $request->busca;
+            $ord = $request->ord == 'asc' ? 'asc' : 'desc'; // Verifica a ordem corretamente
 
-            $ord = $request->ord == 'asc';
-
-            $filmes = Filme::where('nome', 'LIKE', "%{%busca}%")
-                ->orderBy('name', $ord)
+            $filmes = Filme::where('nome', 'LIKE', "%$busca%") // Corrige o uso das variáveis
+                ->orderBy('nome', $ord) // Ordena pelo campo correto
                 ->paginate();
         } else {
-
             $filmes = Filme::paginate();
         }
 

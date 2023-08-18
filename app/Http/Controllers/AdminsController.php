@@ -7,6 +7,8 @@ use App\Models\Filme;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Facades\DB;
+
 
 class AdminsController extends Controller
 {
@@ -19,25 +21,32 @@ class AdminsController extends Controller
         ]);
     }
 
-    public function indexFilme(Request $request)
+    public function filtrarFilmes(Request $request)
     {
-        if ($request->isMethod('POST')) {
-            $busca = $request->busca;
+        $categorias = DB::table('filmes')->distinct('categoria')->pluck('categoria');
 
-            $ord = $request->ord == 'asc';
+        $query = Filme::query();
 
-            $filmes = Filme::where('nome', 'LIKE', "%{%busca}%")
-                ->orderBy('name', $ord)
-                ->paginate();
-        } else {
-
-            $filmes = Filme::paginate();
+        if ($request->has('categoria')) {
+            $query->where('categoria', $request->categoria);
         }
 
-        return view('adm.indexFilme', [
+        if ($request->has('ano')) {
+            $query->where('ano', $request->ano);
+        }
+
+        if ($request->has('nome')) {
+            $query->where('nome', 'LIKE', '%' . $request->nome . '%');
+        }
+
+        $filmes = $query->paginate();
+
+        return view('sua.view.aqui', [
             'filmes' => $filmes,
+            'categorias' => $categorias,
         ]);
     }
+
 
     public function addUsuario()
     {
