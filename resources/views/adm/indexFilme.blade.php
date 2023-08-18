@@ -17,8 +17,6 @@
                     <li class="list-group-item" style="font-size: 14px;">Categoria: {{ $filme->categoria }}</li>
                 </ul>
                 <div class="card-body">
-                    <a href="{{ route('usuario.viewFilmeUsuario', $filme->id) }}" class="card-link"
-                        style="font-size: 14px;">Ver detalhes</a>
                     <a href="{{ route('adm.deleteFilme', $filme->id) }}">Apagar</a>
                     <a href="{{ route('adm.editFilme', $filme->id) }}">Editar</a>
                 </div>
