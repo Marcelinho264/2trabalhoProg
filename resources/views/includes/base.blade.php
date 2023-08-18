@@ -15,6 +15,9 @@
             <li class="nav-item active">
               <a style="color: white" class="nav-link" href="{{ route('adm.indexUsuario') }}">Usuários <span class="sr-only">(current)</span></a>
             </li>
+            <li class="nav-item active">
+                <a style="color: white" class="nav-link" href="{{ route('adm.addFilme') }}">Filme <span class="sr-only">(current)</span></a>
+              </li>
           </ul>
         </div>
       </nav>
