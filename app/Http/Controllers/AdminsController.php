@@ -31,7 +31,7 @@ class AdminsController extends Controller
 
     public function addUsuario()
     {
-        return view('adm.indexUsuario');
+        return view('adm.addUsuario');
     }
 
     public function addUsuarioSave(Request $form)
