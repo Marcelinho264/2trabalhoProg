@@ -16,15 +16,15 @@
                     <li class="list-group-item" style="font-size: 14px;">Categoria: {{ $filme->categoria }}</li>
                 </ul>
                 <div class="card-body">
-                    <a href="{{ route('usuario.viewFilmeUsuario', $filme->id) }}" class="card-link" style="font-size: 14px;">Ver detalhes</a>
                     <a href="{{ route('adm.deleteFilme', $filme->id) }}">Apagar</a>
                     <a href="{{ route('adm.editFilme', $filme->id) }}">Editar</a>
                 </div>
             </div>
         @endforeach
         <br>
-        <a href="{{ route('adm.addFilme' )}}"><button>Adicionar Filme</button></a>
-        <a href="{{ route('adm.addUsuario')}}"><button>Adicionar novo Usuário</button></a>
-        <a href="{{ route('adm.indexUsuario')}}"><button>Visualizar Usuários</button></a>
+        <a href="{{ route('adm.addFilme' )}}"><button class="btn btn-danger">Adicionar Filme</button></a>
+        <a href="{{ route('adm.addUsuario')}}"><button class="btn btn-danger">Adicionar novo Usuário</button></a>
+        <a href="{{ route('adm.indexUsuario')}}"><button class="btn btn-danger">Visualizar Usuários</button></a>
     </div>
 @endsection
+

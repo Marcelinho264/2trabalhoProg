@@ -20,8 +20,8 @@
             Administrador
             @endif
         </td>
-        <td><a href="{{ route('adm.deleteUsuario', $usuario->id) }}">Apagar</a> |
-            <a href="{{ route('adm.editUsuario', $usuario->id) }}">Editar</a></td>
+        <td><a class="btn btn-danger"  href="{{ route('adm.deleteUsuario', $usuario->id) }}">Apagar</a> |
+            <a class="btn btn-danger" href="{{ route('adm.editUsuario', $usuario->id) }}">Editar</a></td>
         </tr>
         @endforeach
     </table>

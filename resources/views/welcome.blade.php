@@ -39,7 +39,7 @@
         .btn-enter {
             display: inline-block;
             padding: 10px 20px;
-            background-color: #007bff;
+            background-color: red;
             color: #fff;
             font-size: 18px;
             border: none;
@@ -49,7 +49,7 @@
         }
 
         .btn-enter:hover {
-            background-color: #0056b3;
+            background-color: #ad2a51;
         }
     </style>
 </head>
