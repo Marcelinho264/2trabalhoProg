@@ -21,10 +21,6 @@
             @endif
         </td>
         <td>
-<<<<<<< HEAD
-=======
-            <a href="{{ route('usuario.viewFilmeUsuario', $filme->id) }}" class="card-link" style="font-size: 14px;">Ver detalhes</a>
->>>>>>> 41670ae565e6da2998cb9c791dc579485bdd9fbe
             <a class="btn btn-danger"  href="{{ route('adm.deleteUsuario', $usuario->id) }}">Apagar</a> |
             <a class="btn btn-danger" href="{{ route('adm.editUsuario', $usuario->id) }}">Editar</a></td>
         </tr>
