@@ -1,14 +1,17 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use App\Models\Filme;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 
 class UsuariosController extends Controller
 {
 
-    public function viewFilmeUsuario($id) {
+    public function viewFilmeUsuario($id)
+    {
         $filme = Filme::find($id);
 
         if (!$filme) {
@@ -18,20 +21,37 @@ class UsuariosController extends Controller
         return view('usuario.viewFilmeUsuario', compact('filme'));
     }
 
-    public function indexFilmeUsuario(Request $request) {
-        if ($request->isMethod('POST')) {
-            $busca = $request->busca;
-            $ord = $request->ord == 'asc' ? 'asc' : 'desc'; // Verifica a ordem corretamente
+    public function indexFilmeUsuario(Request $request)
+    { {
+           
+            $categorias = DB::table('filmes')->distinct('categoria')->pluck('categoria');
 
-            $filmes = Filme::where('nome', 'LIKE', "%$busca%") // Corrige o uso das variáveis
-                ->orderBy('nome', $ord) // Ordena pelo campo correto
-                ->paginate();
-        } else {
-            $filmes = Filme::paginate();
+            // Filtros
+            $filtroCategoria = $request->input('categoria');
+            $filtroAno = $request->input('ano');
+            $filtroNome = $request->input('nome');
+
+            // Query Builder para os filmes
+            $filmesQuery = Filme::query();
+
+            if ($filtroCategoria) {
+                $filmesQuery->where('categoria', $filtroCategoria);
+            }
+
+            if ($filtroAno) {
+                $filmesQuery->where('ano', $filtroAno);
+            }
+
+            if ($filtroNome) {
+                $filmesQuery->where('nome', 'LIKE', '%' . $filtroNome . '%');
+            }
+
+            $filmes = $filmesQuery->paginate();
+
+            return view('usuario.indexFilmeUsuario', [
+                'filmes' => $filmes,
+                'categorias' => $categorias,
+            ]);
         }
-
-        return view('usuario.indexFilmeUsuario', [
-            'filmes' => $filmes,
-        ]);
     }
 }
