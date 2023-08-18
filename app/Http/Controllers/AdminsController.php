@@ -7,6 +7,8 @@ use App\Models\Filme;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Facades\DB;
+
 
 class AdminsController extends Controller
 {
@@ -14,28 +16,18 @@ class AdminsController extends Controller
     {
         $usuarios = Usuario::all();
 
-        return view('adm.indexUsuario', ['usuarios' => $usuarios]);
-    }
-
-    public function indexFilme(Request $request)
-    {
-        if ($request->isMethod('POST')) {
-            $busca = $request->busca;
-
-            $ord = $request->ord == 'asc';
-
-            $filmes = Filme::where('nome', 'LIKE', "%{%busca}%")
-                ->orderBy('name', $ord)
-                ->paginate();
-        } else {
-
-            $filmes = Filme::paginate();
-        }
-
-        return view('adm.indexFilme', [
-            'filmes' => $filmes,
+        return view('adm.indexUsuario', [
+            'usuarios' => $usuarios
         ]);
     }
+
+    public function indexFilme(Filme $filmes)
+    {
+        $filmes = Filme::all();
+
+        return view('adm.indexFilme', ['filmes' => $filmes]);
+    }
+
 
     public function addUsuario()
     {
@@ -70,18 +62,19 @@ class AdminsController extends Controller
         $dados = $request->validate([
             'nome' => 'required',
             'email' => 'required|email',
+            'permissao' => 'required',
         ]);
 
         $usuario->fill($dados);
 
         $usuario->save();
 
-        return redirect()->route('adm.addFilme')->with('sucesso', 'Usuário alterado com sucesso');
+        return redirect()->route('adm.indexUsuario')->with('sucesso', 'Usuário alterado com sucesso');
     }
 
     public function deleteUsuario(Usuario $usuario)
     {
-        return view('adm.indexUsuario', [
+        return view('adm.deleteUsuario', [
             'usuario' => $usuario
         ]);
     }
@@ -90,7 +83,7 @@ class AdminsController extends Controller
     {
         $usuario->delete();
 
-        return redirect()->route('deleteUsuario')->with('sucesso', 'Usuario excluido com sucesso');
+        return redirect()->route('adm.indexUsuario')->with('sucesso', 'Usuario excluido com sucesso');
     }
 
     public function addFilme()
@@ -113,7 +106,7 @@ class AdminsController extends Controller
 
         event(new Registered($filme));
 
-        return redirect()->route('adm.addFilme')->with('sucesso', 'Filme cadastrado com sucesso');
+        return redirect()->route('adm.indexFilme')->with('sucesso', 'Filme cadastrado com sucesso');
     }
 
     public function editFilme(Filme $filme)

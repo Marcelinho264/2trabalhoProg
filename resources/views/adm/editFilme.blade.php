@@ -1,4 +1,63 @@
-<div class="container">
+@extends('includes.edit')
+
+<h2>Filmes SB</h2>
+
+@if ($errors)
+@foreach ($errors->all() as $err)
+{{ $err }}<br>
+@endforeach
+@endif
+
+@section('content')
+<section>
+    <div class="form-box">
+        <div class="form-value">
+            <form method="POST" action="{{ route('adm.editFilmeSave', $filme->id) }}">
+                @csrf
+                <h2>Atualizar filme</h2>
+                <div class="inputbox">
+                    <ion-icon name="person-outline"></ion-icon>
+                    <input type="text" name="nome" class="form-control"
+                    value="{{ old('name', $filme->nome) }}" >
+                    <label for="">Nome do filme</label>
+                </div>
+                <div class="inputbox">
+                    <ion-icon name="person-outline"></ion-icon>
+                    <input type="text" name="categoria" class="form-control"
+                    value="{{ old('categoria', $filme->categoria) }}" >
+                    <label for="">Categoria do Filme</label>
+                </div>
+                <div class="inputbox">
+                    <ion-icon name="person-outline"></ion-icon>
+                    <input type="number" name="ano" class="form-control"
+                    value="{{ old('ano', $filme->ano) }}">
+                    <label for="">Ano de lançamento</label>
+                </div>
+                <div class="inputbox">
+                    <ion-icon name="person-outline"></ion-icon>
+                    <input type="text" name="sinopse" class="form-control"
+                    value="{{ old('sinopse', $filme->sinopse) }}">
+                    <label>Sinopse do filme</label>
+                </div>
+                <div class="inputbox">
+                    <ion-icon name="person-outline"></ion-icon>
+                    <input type="text" name="link_trailer" class="form-control"
+                    value="{{ old('link_trailer', $filme->link_trailer) }}">
+                    <label>Link do filme</label>
+                </div>
+                <div class="inputbox">
+                    <ion-icon name="person-outline"></ion-icon>
+                    <input type="url" name="imagem_capa" class="form-control"
+                    value="{{ old('imagem_capa', $filme->imagem_capa) }}">
+                    <label>Imagem da capa</label>
+                </div>
+                <button>Logar</button>
+            </form>
+        </div>
+    </div>
+</section>
+@endsection
+{{-- <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -44,4 +103,4 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
