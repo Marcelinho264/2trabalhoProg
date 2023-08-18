@@ -18,13 +18,13 @@
                 <div class="inputbox">
                     <ion-icon name="person-outline"></ion-icon>
                     <input type="text" name="nome" class="form-control"
-                    value="{{ old('name', $filme->nome) }}" required>
+                    value="{{ old('name', $filme->nome) }}" >
                     <label for="">Nome do filme</label>
                 </div>
                 <div class="inputbox">
                     <ion-icon name="person-outline"></ion-icon>
                     <input type="text" name="categoria" class="form-control"
-                    value="{{ old('categoria', $filme->categoria) }}" required>
+                    value="{{ old('categoria', $filme->categoria) }}" >
                     <label for="">Categoria do Filme</label>
                 </div>
                 <div class="inputbox">
@@ -47,7 +47,7 @@
                 </div>
                 <div class="inputbox">
                     <ion-icon name="person-outline"></ion-icon>
-                    <input type="file" name="imagem_capa" class="form-control"
+                    <input type="url" name="imagem_capa" class="form-control"
                     value="{{ old('imagem_capa', $filme->imagem_capa) }}">
                     <label>Imagem da capa</label>
                 </div>

@@ -14,7 +14,9 @@ class AdminsController extends Controller
     {
         $usuarios = Usuario::all();
 
-        return view('adm.indexUsuario', ['usuarios' => $usuarios]);
+        return view('adm.indexUsuario', [
+            'usuarios' => $usuarios
+        ]);
     }
 
     public function indexFilme(Request $request)
@@ -114,7 +116,7 @@ class AdminsController extends Controller
 
         event(new Registered($filme));
 
-        return redirect()->route('adm.addFilme')->with('sucesso', 'Filme cadastrado com sucesso');
+        return redirect()->route('adm.indexFilme')->with('sucesso', 'Filme cadastrado com sucesso');
     }
 
     public function editFilme(Filme $filme)

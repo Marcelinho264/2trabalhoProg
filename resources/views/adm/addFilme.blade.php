@@ -1,4 +1,4 @@
-@extends('includes.form')
+@extends('includes.add')
 
 <h2>Filmes SB</h2>
 

@@ -1,29 +1,30 @@
 @extends('includes.base')
 
 @section('content')
-
-<body>
-    <table style="margin-top: 2vw;" class="table">
-        <tr>
-            <th scope="col">Título</th>
-            <th scope="col">Ano</th>
-            <th scope="col">Categoria</th>
-            <th scope="col">Opções</th>
-        </tr>
+    <div style="margin-top: 2vw;">
+        <h1 style="font-size: 24px;">Lista de Filmes</h1>
 
         @foreach ($filmes as $filme)
-        <tr>
-            <td scope="row">{{ $filme->nome}}</td>
-            <td>{{ $filme->ano }}</td>
-            <td>{{ $filme->categoria }}</td>
-            <td><a href="{{ route('adm.deleteFilme', $filme->id) }}">Apagar</a>
-                <a href="{{ route('adm.editFilme', $filme->id) }}">Editar</a></td>
-        </tr>
+            <div class="card" style="width: 18rem; display: inline-block; margin: 10px;">
+                <img class="card-img-top" src="{{ $filme->imagem_capa }}" alt="Capa do Filme">
+                <div class="card-body">
+                    <h5 class="card-title" style="font-size: 18px;">{{ $filme->nome }}</h5>
+                    <p class="card-text">{{ $filme->sinopse }}</p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item" style="font-size: 14px;">Ano de lançamento: {{ date('d/m/Y', strtotime($filme->ano)) }}</li>
+                    <li class="list-group-item" style="font-size: 14px;">Categoria: {{ $filme->categoria }}</li>
+                </ul>
+                <div class="card-body">
+                    <a href="{{ route('usuario.viewFilmeUsuario', $filme->id) }}" class="card-link" style="font-size: 14px;">Ver detalhes</a>
+                    <a href="{{ route('adm.deleteFilme', $filme->id) }}">Apagar</a>
+                    <a href="{{ route('adm.editFilme', $filme->id) }}">Editar</a>
+                </div>
+            </div>
         @endforeach
-    </table>
-
-    <a href="{{ route('adm.addFilme' )}}"><button>Adicionar Filme</button></a>
-    <a href="{{ route('adm.addUsuario')}}"><button>Adicionar novo Usuário</button></a>
-    <a href="{{ route('adm.indexUsuario')}}"><button>Visualizar Usuários</button></a>
-
+        <br>
+        <a href="{{ route('adm.addFilme' )}}"><button>Adicionar Filme</button></a>
+        <a href="{{ route('adm.addUsuario')}}"><button>Adicionar novo Usuário</button></a>
+        <a href="{{ route('adm.indexUsuario')}}"><button>Visualizar Usuários</button></a>
+    </div>
 @endsection
